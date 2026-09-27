@@ -1,19 +1,27 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.mkslanc.intellijshexhighlighter</id>
-    <name>intellij-shex-highlighter</name>
+    <name>ShEx Syntax Highlighter</name>
     <vendor>mkslanc</vendor>
     <description><![CDATA[
-        <p><b>intellij-shex-highlighter</b> is a repository that provides a pure template to make it easier to create a new plugin project.</p>
-        <p>The main goal of this template is to speed up the setup phase of plugin development for both new and experienced developers by preconfiguring the project scaffold and CI, linking to the proper documentation pages, and keeping everything organized.</p>
+        <p>Adds syntax highlighting for Shape Expressions Compact Syntax (ShExC) files.</p>
+        <p>The plugin recognizes <code>.shex</code> files and highlights directives, keywords,
+        IRIs, prefixed names, shape references, literals, comments, and operators.</p>
     ]]></description>
 
+    <idea-version since-build="252"/>
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.mkslanc.intellijshexhighlighter.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.mkslanc.intellijshexhighlighter.startup.MyProjectActivity" />
+        <fileType
+                name="ShEx"
+                language="ShEx"
+                extensions="shex"
+                implementationClass="com.github.mkslanc.intellijshexhighlighter.ShExFileType"
+                fieldName="INSTANCE"/>
+        <lang.syntaxHighlighterFactory
+                language="ShEx"
+                implementationClass="com.github.mkslanc.intellijshexhighlighter.highlighting.ShExSyntaxHighlighterFactory"/>
+        <colorSettingsPage
+                implementation="com.github.mkslanc.intellijshexhighlighter.highlighting.ShExColorSettingsPage"/>
     </extensions>
 </idea-plugin>

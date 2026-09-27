@@ -4,4 +4,5 @@
 
 ## [Unreleased]
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- ShExC file recognition and syntax highlighting for `.shex` files.
+- Configurable ShEx colors in the IDE color scheme settings.
